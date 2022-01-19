@@ -25,5 +25,8 @@ module PublicDomain
     config.middleware.use Rack::Deflater
     config.load_defaults 7.0
     config.time_zone = "Central Time (US & Canada)"
+    config.generators do |g|
+      g.test_framework :test_unit, fixture: false
+    end
   end
 end

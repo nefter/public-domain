@@ -24,6 +24,7 @@ gem "redis", "~> 4.0"
 
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]
+  gem "factory_bot_rails"
   gem "rubocop", require: false
   gem "rubocop-minitest", require: false
   gem "rubocop-performance", require: false
@@ -37,7 +38,6 @@ end
 
 group :test do
   gem "capybara"
-  gem "factory_bot_rails"
   gem "selenium-webdriver"
   gem "webdrivers"
 end
