@@ -4,7 +4,7 @@ require "test_helper"
 
 class LandingControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get "landing"
+    get "#landing"
     assert_response :success
   end
 end
