@@ -85,9 +85,9 @@ $button-colors: $colors !default
       width: 1.5em
     &:first-child:not(:last-child)
       +ltr-property("margin", calc(#{calc(-1 / 2) * $button-padding-horizontal} - #{$button-border-width}), false)
-      +ltr-property("margin", ($button-padding-horizontal / 4))
+      +ltr-property("margin", calc($button-padding-horizontal / 4))
     &:last-child:not(:first-child)
-      +ltr-property("margin", ($button-padding-horizontal / 4, false))
+      +ltr-property("margin", calc($button-padding-horizontal / 4, false))
       +ltr-property("margin", calc(#{calc(-1 / 2) * $button-padding-horizontal} - #{$button-border-width}))
     &:first-child:last-child
       margin-left: calc(#{calc(-1 / 2) * $button-padding-horizontal} - #{$button-border-width})
