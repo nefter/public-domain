@@ -34,6 +34,7 @@ end
 group :development do
   gem "rack-mini-profiler"
   gem "web-console"
+  gem 'sassc', '1.12.1'
 end
 
 group :test do
