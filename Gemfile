@@ -32,7 +32,9 @@ group :development, :test do
 end
 
 group :development do
+  gem "bulma-rails", "~> 0.9.2"
   gem "rack-mini-profiler"
+  gem "sassc", "~> 2.4.0"
   gem "web-console"
 end
 
