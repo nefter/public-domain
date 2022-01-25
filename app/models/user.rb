@@ -3,5 +3,6 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :trackable, :recoverable, :rememberable, :validatable
-  validates %i[username email], uniqueness: true
+  validates :username, uniqueness: true
+  validates :email, uniqueness: true
 end
