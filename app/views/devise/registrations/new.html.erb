@@ -51,8 +51,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Your email" %>
   </div>
   
   <div class="field">
@@ -62,16 +62,16 @@
   
 
   <div class="field">
-    <%= f.label :password %>
+    
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Please repeat your password" %>
   </div>
 
   <div class="actions">
