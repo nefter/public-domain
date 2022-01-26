@@ -11,8 +11,10 @@ gem "pg", "~> 1.3"
 gem "puma", "~> 5.0"
 gem "rails", "~> 7.0.1"
 
+gem "bulma-rails", "~> 0.9.2"
 gem "cssbundling-rails"
 gem "jsbundling-rails"
+gem "sass-rails"
 gem "sprockets-rails"
 gem "stimulus-rails"
 gem "turbo-rails"
@@ -32,7 +34,6 @@ group :development, :test do
 end
 
 group :development do
-  gem "bulma-rails", "~> 0.9.2"
   gem "rack-mini-profiler"
   gem "sassc", "~> 2.4.0"
   gem "web-console"
