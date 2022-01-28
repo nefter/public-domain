@@ -12,6 +12,43 @@
   </head>
 
   <body>
+
+        <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+            <span class="navbar-item">
+              <%= link_to "Home"%>
+            </span>
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+        onclick="document.querySelector('.navbar-menu').classList.toggle('is-active');" data-target="navbarBasicExample">
+
+            <span></span>
+            <span></span>
+            <span></span>
+          </a>
+        </div>
+        <div id="landingMenu" class="navbar-menu">
+          <div class="navbar-end">
+            <% if !user_signed_in? %>
+            <span class="navbar-item">
+              <%= link_to "Sign up", new_user_registration_path, class: "button" %>
+            </span>
+            <span class="navbar-item">
+              <%= link_to "Log In", new_user_session_path,  class: "button is-primary" %>
+            </span>
+            <% end %>
+            <% if user_signed_in? %>
+            <span class="navbar-item">
+              <%= current_user.email %>
+            </span>
+            <span class="navbar-item">
+              <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { "turbo-method": :delete }, class: "button is-primary" %>
+            </span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>
