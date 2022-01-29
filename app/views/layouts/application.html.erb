@@ -41,6 +41,9 @@
             <% end %>
             <% if user_signed_in? %>
             <span class="navbar-item">
+              <%= link_to "Create", items_path, class: "button is-primary" %>
+            </span>
+            <span class="navbar-item">
               <%= current_user.email %>
             </span>
             <span class="navbar-item">
