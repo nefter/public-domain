@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class CollectionsController < ApplicationController
-  before_action :set_collection, only: %i[ show edit update destroy ]
+  before_action :set_collection, only: %i[show edit update destroy]
 
   # GET /collections
   def index
@@ -7,8 +9,7 @@ class CollectionsController < ApplicationController
   end
 
   # GET /collections/1
-  def show
-  end
+  def show; end
 
   # GET /collections/new
   def new
@@ -16,8 +17,7 @@ class CollectionsController < ApplicationController
   end
 
   # GET /collections/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /collections
   def create
@@ -46,13 +46,14 @@ class CollectionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_collection
-      @collection = Collection.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def collection_params
-      params.require(:collection).permit(:name, :status, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_collection
+    @collection = Collection.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def collection_params
+    params.require(:collection).permit(:name, :status, :user_id)
+  end
 end
