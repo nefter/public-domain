@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
 class LandingController < ApplicationController
-  def index; end
+  # GET /items
+  def index
+    @items = Item.all
+  end
 end

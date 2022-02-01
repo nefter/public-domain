@@ -19,193 +19,85 @@
       <div class="container is-fullhd">
         <h1 class="title">Movies</h1>
         <div class="columns">
-          <div class="column">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img class="lazyload 4by3"
-              src="https://i.imgur.com/PhRwY4X.jpg"
-              data-src="https://i.imgur.com/PhRwY4X.jpg"
-              data-srcset="https://i.imgur.com/PhRwY4X.jpg 2x,
-                          https://i.imgur.com/PhRwY4X.jpg 1x"
-              width="672"
-              height="420" alt="Placeholder image">
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-left">
-                    <figure class="image is-48x48">
-                      <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                    </figure>
+          <% @items.each do |item| %>
+            <div class="column">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-4by3">
+                    <img class="lazyload 4by3"
+                      src="https://i.imgur.com/PhRwY4X.jpg"
+                      data-src="https://i.imgur.com/PhRwY4X.jpg"
+                      data-srcset="https://i.imgur.com/PhRwY4X.jpg 2x,
+                                  https://i.imgur.com/PhRwY4X.jpg 1x"
+                      width="672"
+                      height="420" alt="Placeholder image">
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-left">
+                      <figure class="image is-48x48">
+                        <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                      </figure>
+                    </div>
+                    <div class="media-content">
+                      <p class="title is-4" style="color:black"><%= item.title %></p>
+                      <p class="subtitle is-6" style="color:black">Uploaded by: @user</p>
+                    </div>
                   </div>
-                  <div class="media-content">
-                    <p class="title is-4">John Smith</p>
-                    <p class="subtitle is-6">@johnsmith</p>
+              
+                  <div class="content">
+                    <%= item.description %>.
+                    <p class="subtitle is-6" style="color:black">ID: <%= item.id %></p>
+                    <p class="subtitle is-6" style="color:black">Published: <%= item.published %></p>
+                    <p class="subtitle is-6" style="color:black">Views: <% if item.views? %> <%= item.views %> <%else%> Not enough <% end %></p>
+                    <%= item.created_at.strftime("%-d/%-m/%y  %H:%M %Z") %>
                   </div>
                 </div>
-            
-                <div class="content">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                  <a href="#">#css</a> <a href="#">#responsive</a>
-                  <br>
-                  <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                </div>
-              </div>
+              </div>            
             </div>
-          </div>
-          <div class="column">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img class="lazyload 4by3"
-              src="https://i.imgur.com/PhRwY4X.jpg"
-              data-src="https://i.imgur.com/PhRwY4X.jpg"
-              data-srcset="https://i.imgur.com/PhRwY4X.jpg 2x,
-                          https://i.imgur.com/PhRwY4X.jpg 1x"
-              width="672"
-              height="420" alt="Placeholder image">
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-left">
-                    <figure class="image is-48x48">
-                      <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                    </figure>
-                  </div>
-                  <div class="media-content">
-                    <p class="title is-4">John Smith</p>
-                    <p class="subtitle is-6">@johnsmith</p>
-                  </div>
-                </div>
-            
-                <div class="content">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                  <a href="#">#css</a> <a href="#">#responsive</a>
-                  <br>
-                  <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img class="lazyload 4by3"
-              src="https://i.imgur.com/PhRwY4X.jpg"
-              data-src="https://i.imgur.com/PhRwY4X.jpg"
-              data-srcset="https://i.imgur.com/PhRwY4X.jpg 2x,
-                          https://i.imgur.com/PhRwY4X.jpg 1x"
-              width="672"
-              height="420" alt="Placeholder image">
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-left">
-                    <figure class="image is-48x48">
-                      <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                    </figure>
-                  </div>
-                  <div class="media-content">
-                    <p class="title is-4">John Smith</p>
-                    <p class="subtitle is-6">@johnsmith</p>
-                  </div>
-                </div>
-            
-                <div class="content">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                  <a href="#">#css</a> <a href="#">#responsive</a>
-                  <br>
-                  <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img class="lazyload 4by3"
-              src="https://i.imgur.com/PhRwY4X.jpg"
-              data-src="https://i.imgur.com/PhRwY4X.jpg"
-              data-srcset="https://i.imgur.com/PhRwY4X.jpg 2x,
-                          https://i.imgur.com/PhRwY4X.jpg 1x"
-              width="672"
-              height="420" alt="Placeholder image">
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-left">
-                    <figure class="image is-48x48">
-                      <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                    </figure>
-                  </div>
-                  <div class="media-content">
-                    <p class="title is-4">John Smith</p>
-                    <p class="subtitle is-6">@johnsmith</p>
-                  </div>
-                </div>
-            
-                <div class="content">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                  <a href="#">#css</a> <a href="#">#responsive</a>
-                  <br>
-                  <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                </div>
-              </div>
-            </div>
-          </div>
+          <% end %> 
         </div>
         <h1 class="title">Books</h1>
       <div class="columns">
-        <div class="column">
-          <img
-            class="lazyload 4by3"
-            src="https://i.imgur.com/PhRwY4X.jpg"
-            data-src="https://i.imgur.com/PhRwY4X.jpg"
-            data-srcset="https://i.imgur.com/PhRwY4X.jpg 2x,
-                        https://i.imgur.com/PhRwY4X.jpg 1x"
-            width="672"
-            height="420">
-        </div>
-        <div class="column">
-          <img
-            class="lazyload 4by3"
-            src="https://i.imgur.com/Jpr5u5B.jpg"
-            data-src="https://i.imgur.com/Jpr5u5B.jpg"
-            data-srcset="https://i.imgur.com/Jpr5u5B.jpg 2x,
-                        https://i.imgur.com/Jpr5u5B.jpg 1x"
-            width="672"
-            height="420">
-        </div>
-        <div class="column">
-          <img
-            class="lazyload 4by3"
-            src="https://i.imgur.com/c6pABBm.jpg"
-            data-src="https://i.imgur.com/c6pABBm.jpg"
-            data-srcset="https://i.imgur.com/c6pABBm.jpg 2x,
-                        https://i.imgur.com/c6pABBm.jpg 1x"
-            width="672"
-            height="420">
-        </div>
-        <div class="column">
-          <img
-            class="lazyload 4by3"
-            src="https://i.imgur.com/JgXkaUM.jpg"
-            data-src="https://i.imgur.com/JgXkaUM.jpg"
-            data-srcset="https://i.imgur.com/JgXkaUM.jpg 2x,
-                        https://i.imgur.com/JgXkaUM.jpg 1x"
-            width="672"
-            height="420">
-        </div> 
+        <% @items.each do |item| %>
+            <div class="column">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-4by3">
+                    <img class="lazyload 4by3"
+                      src="https://i.imgur.com/PhRwY4X.jpg"
+                      data-src="https://i.imgur.com/PhRwY4X.jpg"
+                      data-srcset="https://i.imgur.com/PhRwY4X.jpg 2x,
+                                  https://i.imgur.com/PhRwY4X.jpg 1x"
+                      width="672"
+                      height="420" alt="Placeholder image">
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-left">
+                      <figure class="image is-48x48">
+                        <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                      </figure>
+                    </div>
+                    <div class="media-content">
+                      <p class="title is-4" style="color:black"><%= item.title %></p>
+                      <p class="subtitle is-6" style="color:black">Uploaded by: @user</p>
+                    </div>
+                  </div>
+              
+                  <div class="content">
+                    <%= item.description %>.
+                    <p class="subtitle is-6" style="color:black">ID: <%= item.id %></p>
+                    <p class="subtitle is-6" style="color:black">Published: <%= item.published %></p>
+                    <p class="subtitle is-6" style="color:black">Views: <% if item.views? %> <%= item.views %> <%else%> Not enough <% end %></p>
+                    <%= item.created_at.strftime("%-d/%-m/%y  %H:%M %Z") %>
+                  </div>
+                </div>
+              </div>            
+            </div>
+          <% end %>
       </div>
     <% end %>
   </div>

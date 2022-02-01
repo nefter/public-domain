@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
   # POST /items
   def create
     @item = Item.new(item_params)
-
+    @item.user_id = current_user.id
     if @item.save
       redirect_to @item, notice: "Item was successfully created."
     else
@@ -54,6 +54,6 @@ class ItemsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def item_params
-    params.require(:item).permit(:title, :description, :published, :views)
+    params.require(:item).permit(:title, :description, :published, :views, :collection_id)
   end
 end

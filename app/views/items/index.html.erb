@@ -38,13 +38,14 @@
                     <p class="subtitle is-6" style="color:black">Published: <%= item.published %></p>
                     <p class="subtitle is-6" style="color:black">Views: <% if item.views? %> <%= item.views %> <%else%> Not enough <% end %></p>
                     <%= item.created_at.strftime("%-d/%-m/%y  %H:%M %Z") %>
+                    <%= button_to "Destroy this item", item, method: :delete %>
                   </div>
                 </div>
               </div>
                 
               </div>
           <% end %>
-        </div>
+      </div>
     <% end %>
   </div>
 </section>

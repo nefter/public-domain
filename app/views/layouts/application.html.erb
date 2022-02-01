@@ -41,7 +41,10 @@
             <% end %>
             <% if user_signed_in? %>
             <span class="navbar-item">
-              <%= link_to "Create", items_path, class: "button is-primary" %>
+              <%= link_to "New Item", new_item_path, class: "button is-primary" %>
+            </span>
+            <span class="navbar-item">
+              <%= link_to "New Collection", new_collection_path, class: "button is-primary" %>
             </span>
             <span class="navbar-item">
               <%= current_user.email %>
