@@ -18,7 +18,7 @@ gem "stimulus-rails"
 gem "turbo-rails"
 
 gem "bootsnap", require: false
-gem "redis", "~> 4.0"
+gem "redis", "~> 4.6"
 # gem "kredis"
 # gem "image_processing", "~> 1.2"
 
