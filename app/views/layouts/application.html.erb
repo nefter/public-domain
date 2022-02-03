@@ -47,7 +47,7 @@
               <%= link_to "New Collection", new_collection_path, class: "button is-primary" %>
             </span>
             <span class="navbar-item">
-              <%= current_user.email %>
+              <%= link_to current_user.username, edit_user_registration_path %>
             </span>
             <span class="navbar-item">
               <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { "turbo-method": :delete }, class: "button is-primary" %>

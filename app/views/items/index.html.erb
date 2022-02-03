@@ -3,27 +3,21 @@
   <div class="hero-body">
     <% if user_signed_in? %>
       <div class="container is-fullhd">
-        <h1 class="title">Items</h1>
+        <h1 class="title">Movies</h1>
         <div class="columns">
           <% @items.each do |item| %>
             <div class="column">
               <div class="card">
                 <div class="card-image">
                   <figure class="image is-4by3">
-                    <img class="lazyload 4by3"
-                      src="https://i.imgur.com/PhRwY4X.jpg"
-                      data-src="https://i.imgur.com/PhRwY4X.jpg"
-                      data-srcset="https://i.imgur.com/PhRwY4X.jpg 2x,
-                                  https://i.imgur.com/PhRwY4X.jpg 1x"
-                      width="672"
-                      height="420" alt="Placeholder image">
-                  </figure>
+                    <%= image_tag item.image if item.image.attached? %>
+                   </figure>
                 </div>
                 <div class="card-content">
                   <div class="media">
                     <div class="media-left">
                       <figure class="image is-48x48">
-                        <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                        <%=  item.user_id if item.user_id?%>
                       </figure>
                     </div>
                     <div class="media-content">
@@ -38,14 +32,13 @@
                     <p class="subtitle is-6" style="color:black">Published: <%= item.published %></p>
                     <p class="subtitle is-6" style="color:black">Views: <% if item.views? %> <%= item.views %> <%else%> Not enough <% end %></p>
                     <%= item.created_at.strftime("%-d/%-m/%y  %H:%M %Z") %>
-                    <%= button_to "Destroy this item", item, method: :delete %>
                   </div>
                 </div>
-              </div>
-                
-              </div>
-          <% end %>
+              </div>            
+            </div>
+          <% end %> 
+        </div>
       </div>
-    <% end %>
+    <% end %> 
   </div>
 </section>

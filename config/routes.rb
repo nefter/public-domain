@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :items
   # belongs_to :object, class_name: "object", foreign_key: "object_id"
   root "landing#index"
-  devise_for :users
+  devise_for :users, controllers: { registrations: "users/registrations" }
 end

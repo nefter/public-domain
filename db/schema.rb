@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2022_02_01_002841) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.text "description"
     t.boolean "published"
     t.integer "views"

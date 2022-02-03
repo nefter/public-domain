@@ -30,7 +30,22 @@
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
+  
+  <p>Current one</p>
+ 
+ <%= image_tag @user.avatar if @user.avatar.attached? %> 
+ 
+ <%
+=begin%>
+ <%= @user.id. if @user.id? %> 
+<%
+=end%>
 
+  <div class="field">
+    <%= f.label :avatar %><br />
+    <%= f.file_field :avatar %>
+  </div>
+  
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
