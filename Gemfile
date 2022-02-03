@@ -20,7 +20,7 @@ gem "turbo-rails"
 gem "bootsnap", require: false
 gem "redis", "~> 4.0"
 # gem "kredis"
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]

@@ -27,6 +27,11 @@
   </div>
 
   <div>
+    <%= form.label :image, style: "display: block" %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div>
     <%= form.label :published, style: "display: block" %>
     <%= form.check_box :published %>
   </div>
