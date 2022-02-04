@@ -31,10 +31,10 @@
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
   
-  <p>Current one</p>
- 
+  <p>Current avatar</p>
+ <figure class="image is-96x96">
  <%= image_tag @user.avatar if @user.avatar.attached? %> 
- 
+ </figure>
  <%
 =begin%>
  <%= @user.id. if @user.id? %> 

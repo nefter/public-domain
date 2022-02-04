@@ -23,7 +23,7 @@
             <div class="column">
               <div class="card">
                 <div class="card-image">
-                  <figure class="image is-4by3">
+                  <figure class="image is-3by4">
                     <%= image_tag item.image if item.image.attached? %>
                    </figure>
                 </div>
@@ -31,12 +31,12 @@
                   <div class="media">
                     <div class="media-left">
                       <figure class="image is-48x48">
-                        <%=  item.user_id if item.user_id?%>
+                        <%= image_tag item.user.avatar if item.user.avatar.attached? %>
                       </figure>
                     </div>
                     <div class="media-content">
                       <p class="title is-4" style="color:black"><%= item.title %></p>
-                      <p class="subtitle is-6" style="color:black">Uploaded by: @user</p>
+                      <p class="subtitle is-6" style="color:black">Uploaded by: <%= item.user.username %></p>
                     </div>
                   </div>
               
