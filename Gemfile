@@ -7,8 +7,8 @@ ruby "3.1.0"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "devise"
-gem "pg", "~> 1.3"
-gem "puma", "~> 5.6"
+gem "pg", "~> 1.1"
+gem "puma", "~> 5.0"
 gem "rails", "~> 7.0.1"
 
 gem "cssbundling-rails"
@@ -20,7 +20,7 @@ gem "turbo-rails"
 gem "bootsnap", require: false
 gem "redis", "~> 4.6"
 # gem "kredis"
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]

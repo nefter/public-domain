@@ -1,0 +1,51 @@
+<section class="hero is-primary is-fullheight">
+  <!-- Hero head: will stick at the top -->
+  <div class="hero-body">
+    <% if user_signed_in? %>
+      <div class="container is-fullhd">
+        <h1 class="title">Collections</h1>
+        <div class="columns">
+          <% @collections.each do |collection| %>
+            <div class="column">
+              <div class="card">
+                <div class="card-image">
+                  <div class="hero-body">
+                    <div class="container has-text-centered">
+                      <p class="title" style="color:black">
+                        <%= collection.name %> by <%= collection.user.username %>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-left">
+                      <figure class="image is-48x48">
+                        <%= image_tag collection.user.avatar if collection.user.avatar.attached? %>
+                      </figure>
+                    </div>
+                    <div class="media-content">
+                      <p class="title is-4" style="color:black"><%= collection.name %></p>
+                      <p class="subtitle is-6" style="color:black">Collected by: <%= collection.user.username %></p>
+                    </div>
+                  </div>
+              
+                  <div class="content">
+                    <%
+=begin%>
+ <%= collection.created %>.
+                    <p class="subtitle is-6" style="color:black">ID: <%= collection.user_id %></p> 
+<%
+=end%>
+                    <p class="subtitle is-6" style="color:black">Status: <%= collection.status %></p>
+                    <%= collection.created_at.strftime("%-d/%-m/%y  %H:%M %Z") %>
+                  </div>
+                </div>
+              </div>
+                
+              </div>
+          <% end %>
+      </div>
+    <% end %>
+  </div>
+</section>

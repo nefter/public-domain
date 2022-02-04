@@ -1,7 +1,44 @@
-<h1>Items</h1>
-<ul>list
-<li>1</li>
-<li>2</li>
-<li>3</li>
-<li>4</li>
-</ul>
+<section class="hero is-primary is-fullheight">
+  <!-- Hero head: will stick at the top -->
+  <div class="hero-body">
+    <% if user_signed_in? %>
+      <div class="container is-fullhd">
+        <h1 class="title">Movies</h1>
+        <div class="columns">
+          <% @items.each do |item| %>
+            <div class="column">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-3by4">
+                    <%= image_tag item.image if item.image.attached? %>
+                   </figure>
+                </div>
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-left">
+                      <figure class="image is-48x48">
+                        <%= image_tag item.user.avatar if item.user.avatar.attached? %>
+                      </figure>
+                    </div>
+                    <div class="media-content">
+                      <p class="title is-4" style="color:black"><%= item.title %></p>
+                      <p class="subtitle is-6" style="color:black">Uploaded by: <%= item.user.username %></p>
+                    </div>
+                  </div>
+              
+                  <div class="content">
+                    <%= item.description %>.
+                    <p class="subtitle is-6" style="color:black">ID: <%= item.id %></p>
+                    <p class="subtitle is-6" style="color:black">Published: <%= item.published %></p>
+                    <p class="subtitle is-6" style="color:black">Views: <% if item.views? %> <%= item.views %> <%else%> Not enough <% end %></p>
+                    <%= item.created_at.strftime("%-d/%-m/%y  %H:%M %Z") %>
+                  </div>
+                </div>
+              </div>            
+            </div>
+          <% end %> 
+        </div>
+      </div>
+    <% end %> 
+  </div>
+</section>
