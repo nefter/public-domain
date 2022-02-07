@@ -4,7 +4,7 @@ Download: <%= link_to @item.title, rails_blob_path(@item.image, disposition: "at
 <br/>
 
 <embed 
-src="<%= polymorphic_url(@item.image) %>" type="application/pdf" style="width:50vw; height: 100vh">
+src="<%= polymorphic_url(@item.image) %>" type="application/pdf" style="width:100%; height: auto">
 
 <strong>Item preview:</strong><br/>
 <%= image_tag @item.image.preview(resize_to_fit: [400,300]) if @item.image.previewable?%>
