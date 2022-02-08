@@ -8,12 +8,11 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-    <script src="https://kit.fontawesome.com/392db0e3a2.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/css/bulma-carousel.min.css">
   </head>
 
   <body>
-
-        <nav class="navbar">
+    <nav class="navbar">
       <div class="container">
         <div class="navbar-brand">
           <span class="navbar-item">
@@ -59,4 +58,7 @@
     </nav>
     <%= yield %>
   </body>
+
+  <script src="https://kit.fontawesome.com/392db0e3a2.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script>
 </html>

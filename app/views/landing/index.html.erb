@@ -3,8 +3,8 @@
 
 <section class="hero is-primary is-fullheight">
   <!-- Hero head: will stick at the top -->
-  <div class="hero-body">
-    <% if !user_signed_in? %>
+  <% if !user_signed_in? %>
+    <div class="hero-body">
       <div class="container has-text-left">
         <p class="title">
           Public Domain
@@ -13,110 +13,56 @@
           Tool to store and read public domain materials
         </p>
       </div>
-    <% end %>
+    </div>
+  <% end %>
 
-    <% if user_signed_in? %>
-      <div class="container is-fullhd">
-        <h1 class="title">Movies</h1>
-        <div class="columns">
-          <% @items.each do |item| %>
-            <div class="column">
-              <div class="card">
-                <div class="card-image">
-                  <figure class="image is-3by4">
-                    <% if item.image.attached? %>
-                      <%= image_tag item.image %>
-                      <%= image_tag item.image.preview(resize_to_fit: [600,400]) if item.image.previewable? %>
-                    <% end %>
-                    
-                   </figure>
-                </div>
-                <div class="card-content">
-                  <div class="media">
-                    <div class="media-left">
-                      <figure class="image is-48x48">
-                        <%= image_tag item.user.avatar if item.user.avatar.attached? %>
-                      </figure>
-                    </div>
-                    <div class="media-content">
-                      <p class="title is-4" style="color:black"><%= item.title %></p>
-                      <p class="subtitle is-6" style="color:black">Uploaded by: <%= item.user.username %></p>
-                    </div>
-                  </div>
-              
-                  <div class="content">
-                    <%= item.description %>.
-                    <p class="subtitle is-6" style="color:black">ID: <%= item.id %></p>
-                    <p class="subtitle is-6" style="color:black">Published: <%= item.published %></p>
-                    <p class="subtitle is-6" style="color:black">Views: <% if item.views? %> <%= item.views %> <%else%> Not enough <% end %></p>
-                    <%= item.created_at.strftime("%-d/%-m/%y  %H:%M %Z") %><br/>
-                    <button class="js-modal-trigger" data-target="modal-<%= item.id %>">
-                      View item <%= item.id %>
-                    </button>
-                  </div>
-                  <div class="modal" id="modal-<%= item.id %>">
-                    <div class="modal-background"></div>
-                    <div class="modal-content">
-                      <div class="box">
-                        <p>Modal JS example <%= item.id %></p>
-                          <embed class="is-6" src="<%= polymorphic_url(item.image) %>" type="application/pdf" style="width: 600px; max-width: 100%; min-height: 800px; max-height: 100%;" >
-                      </div>
-                    </div>
-                    <button class="modal-close is-large" aria-label="close"></button>
-                  </div> 
-                </div>
-              </div>            
+  <% if user_signed_in? %>
+    <!-- Start Carousel -->
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <h1 class="title">Items</h1>
+      </div>
+    </div>
+    
+    <div id="carousel-demo" class="carousel is-10 is-offset-2">
+      <% @items.each do |item| %>
+        <div class="js-modal-trigger is-2" data-target="modal-<%= item.id %>" style="margin: 10px!important;">
+          <div class="item-<%= item.id %>">
+            <!-- Slide Content -->
+            <div class="card" style="cursor: pointer; margin:10px;">
+              <div class="card-image">
+                <figure class="image is-3by4">
+                  <% if item.image.attached? %>
+                    <%= image_tag item.image %>
+                    <%= image_tag item.image.preview(resize_to_fit: [600,400]) if item.image.previewable? %>
+                  <% end %>
+                </figure>
+              </div>
             </div>
-          <% end %> 
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <!-- End Carousel -->
+
+    <% @items.each do |item| %>
+      <div class="column">
+        <div class="card-content">
+          <div class="media">                   
+          <div class="modal" id="modal-<%= item.id %>">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+              <div class="box">
+                <h1 class="title" style="color:black"><%= item.title %></h1>
+                  <embed class="is-6" src="<%= polymorphic_url(item.image) %>" type="application/pdf" style="width: 600px; max-width: 100%; min-height: 800px; max-height: 100%;" >
+              </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+          </div> 
         </div>
       </div>
-    <% end %>
-  </div>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Functions to open and close a modal
-      function openModal($el) {
-        $el.classList.add('is-active');
-      }
+    <% end %> 
 
-      function closeModal($el) {
-        $el.classList.remove('is-active');
-      }
+  <% end %> 
 
-      function closeAllModals() {
-        (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-          closeModal($modal);
-        });
-      }
-
-      // Add a click event on buttons to open a specific modal
-      (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
-        const modal = $trigger.dataset.target;
-        const $target = document.getElementById(modal);
-        console.log($target);
-
-        $trigger.addEventListener('click', () => {
-          openModal($target);
-        });
-      });
-
-      // Add a click event on various child elements to close the parent modal
-      (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
-        const $target = $close.closest('.modal');
-
-        $close.addEventListener('click', () => {
-          closeModal($target);
-        });
-      });
-
-      // Add a keyboard event to close all modals
-      document.addEventListener('keydown', (event) => {
-        const e = event || window.event;
-
-        if (e.keyCode === 27) { // Escape key
-          closeAllModals();
-        }
-      });
-    });
-  </script>
 </section>
