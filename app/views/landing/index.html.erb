@@ -17,24 +17,24 @@
   <% end %>
 
   <% if user_signed_in? %>
-    <!-- Start Carousel -->
     <div class="hero-body">
       <div class="container has-text-centered">
-        <h1 class="title">Items</h1>
+        <h1 class="title">Featured Items</h1>
       </div>
     </div>
     
-    <div id="carousel-demo" class="carousel is-10 is-offset-2">
+    <!-- Start Carousel -->
+    <div id="carousel-demo" class="carousel is-10 is-offset-2" style="color: grey;">
       <% @items.each do |item| %>
-        <div class="js-modal-trigger is-2" data-target="modal-<%= item.id %>" style="margin: 10px!important;">
+        <div class="js-modal-trigger is-2 mx-4" data-target="modal-<%= item.id %>">
           <div class="item-<%= item.id %>">
             <!-- Slide Content -->
             <div class="card" style="cursor: pointer; margin:10px;">
               <div class="card-image">
                 <figure class="image is-3by4">
                   <% if item.image.attached? %>
-                    <%= image_tag item.image %>
-                    <%= image_tag item.image.preview(resize_to_fit: [600,400]) if item.image.previewable? %>
+                    <%= image_tag item.image, style:"object-fit: cover;" %>
+                    <%= image_tag item.image.preview(resize_to_fit: [600,400]),style:"object-fit: cover;" if item.image.previewable? %>
                   <% end %>
                 </figure>
               </div>
@@ -53,8 +53,14 @@
             <div class="modal-background"></div>
             <div class="modal-content">
               <div class="box">
-                <h1 class="title" style="color:black"><%= item.title %></h1>
-                  <embed class="is-6" src="<%= polymorphic_url(item.image) %>" type="application/pdf" style="width: 600px; max-width: 100%; min-height: 800px; max-height: 100%;" >
+                <h1 class="subtitle" style="color:black"><%= item.title %></h1>
+
+                <%= link_to "Show item", item %> <span class="icon"><i class="fas fa-eye"></i></span>|
+                <%= link_to "Edit item", edit_item_path(item) %> <% link_to edit_item_path(item) %> <span class="icon"><i class="fas fa-brush"></i></span>|
+                <%= link_to "Go to my items", items_path %> <% link_to items_path %> <span class="icon"><i class="fas fa-images"></i></span>|
+                <%= link_to "Download", rails_blob_path(item.image, disposition: "attachment") %> <span class="icon"><i class="fas fa-download"></i></span>
+                <hr>
+                <embed class="" src="<%= polymorphic_url(item.image) %>" type="application/pdf" style="width: 600px; max-width: 100%; min-height: 800px; max-height: 100%; object-fit: cover;" >
               </div>
             </div>
             <button class="modal-close is-large" aria-label="close"></button>
