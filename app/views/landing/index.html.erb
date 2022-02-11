@@ -3,8 +3,8 @@
 
 <section class="hero is-primary is-fullheight">
   <!-- Hero head: will stick at the top -->
-  <div class="hero-body">
-    <% if !user_signed_in? %>
+  <% if !user_signed_in? %>
+    <div class="hero-body">
       <div class="container has-text-left">
         <p class="title">
           Public Domain
@@ -13,46 +13,61 @@
           Tool to store and read public domain materials
         </p>
       </div>
-    <% end %>
+    </div>
+  <% end %>
 
-    <% if user_signed_in? %>
-      <div class="container is-fullhd">
-        <h1 class="title">Movies</h1>
-        <div class="columns">
-          <% @items.each do |item| %>
-            <div class="column">
-              <div class="card">
-                <div class="card-image">
-                  <figure class="image is-3by4">
-                    <%= image_tag item.image if item.image.attached? %>
-                   </figure>
-                </div>
-                <div class="card-content">
-                  <div class="media">
-                    <div class="media-left">
-                      <figure class="image is-48x48">
-                        <%= image_tag item.user.avatar if item.user.avatar.attached? %>
-                      </figure>
-                    </div>
-                    <div class="media-content">
-                      <p class="title is-4" style="color:black"><%= item.title %></p>
-                      <p class="subtitle is-6" style="color:black">Uploaded by: <%= item.user.username %></p>
-                    </div>
-                  </div>
-              
-                  <div class="content">
-                    <%= item.description %>.
-                    <p class="subtitle is-6" style="color:black">ID: <%= item.id %></p>
-                    <p class="subtitle is-6" style="color:black">Published: <%= item.published %></p>
-                    <p class="subtitle is-6" style="color:black">Views: <% if item.views? %> <%= item.views %> <%else%> Not enough <% end %></p>
-                    <%= item.created_at.strftime("%-d/%-m/%y  %H:%M %Z") %>
-                  </div>
-                </div>
-              </div>            
+  <% if user_signed_in? %>
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <h1 class="title">Featured Items</h1>
+      </div>
+    </div>
+    
+    <!-- Start Carousel -->
+    <div id="carousel-demo" class="carousel is-10 is-offset-2" style="color: grey;">
+      <% @items.each do |item| %>
+        <div class="js-modal-trigger is-2 mx-4" data-target="modal-<%= item.id %>">
+          <div class="item-<%= item.id %>">
+            <!-- Slide Content -->
+            <div class="card" style="cursor: pointer; margin:10px;">
+              <div class="card-image">
+                <figure class="image is-3by4">
+                  <% if item.image.attached? %>
+                    <%= image_tag item.image, style:"object-fit: cover;" %>
+                    <%= image_tag item.image.preview(resize_to_fit: [600,400]),style:"object-fit: cover;" if item.image.previewable? %>
+                  <% end %>
+                </figure>
+              </div>
             </div>
-          <% end %> 
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <!-- End Carousel -->
+
+    <% @items.each do |item| %>
+      <div class="column">
+        <div class="card-content">
+          <div class="media">                   
+          <div class="modal" id="modal-<%= item.id %>">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+              <div class="box">
+                <h1 class="subtitle" style="color:black"><%= item.title %></h1>
+
+                <%= link_to "Show item", item %> <span class="icon"><i class="fas fa-eye"></i></span>|
+                <%= link_to "Edit item", edit_item_path(item) %> <% link_to edit_item_path(item) %> <span class="icon"><i class="fas fa-brush"></i></span>|
+                <%= link_to "Go to my items", items_path %> <% link_to items_path %> <span class="icon"><i class="fas fa-images"></i></span>|
+                <%= link_to "Download", rails_blob_path(item.image, disposition: "attachment") %> <span class="icon"><i class="fas fa-download"></i></span>
+                <hr>
+                <embed class="" src="<%= polymorphic_url(item.image) %>" type="application/pdf" style="width: 600px; max-width: 100%; min-height: 800px; max-height: 100%; object-fit: cover;" >
+              </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+          </div> 
         </div>
       </div>
     <% end %> 
-  </div>
+
+  <% end %> 
 </section>

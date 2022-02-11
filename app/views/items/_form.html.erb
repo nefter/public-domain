@@ -17,8 +17,8 @@
   </div>
 
   <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.select :collection_id, options_for_select(Collection.all.collect {|x| [x.name, x.id]}, params[:collection_id]), {:include_blank => 'No Collection'} %>
+    <%= form.label :collection, style: "display: block" %>
+    <%= form.select :collection_id, options_for_select(Collection.all.collect {|x| [x.name, x.id]}, params[:collection_id]) %>
   </div>
 
   <div>

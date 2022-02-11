@@ -1,7 +1,13 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @item %>
+Download: <%= link_to @item.title, rails_blob_path(@item.image, disposition: "attachment") %>
+<br/>
 
+<embed 
+src="<%= polymorphic_url(@item.image) %>" type="application/pdf" style="width:100%; height: auto">
+
+<strong>Item preview:</strong><br/>
+<%= image_tag @item.image.preview(resize_to_fit: [400,300]) if @item.image.previewable?%>
 <div>
   <%= link_to "Edit this item", edit_item_path(@item) %> |
   <%= link_to "Back to items", items_path %>
