@@ -6,6 +6,7 @@ class CollectionsController < ApplicationController
   # GET /collections
   def index
     @collections = Collection.all
+    @items = Item.all
   end
 
   # GET /collections/1
@@ -14,6 +15,7 @@ class CollectionsController < ApplicationController
   # GET /collections/new
   def new
     @collection = Collection.new
+    @item = Item.new
   end
 
   # GET /collections/1/edit

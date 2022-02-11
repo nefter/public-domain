@@ -1,3 +1,6 @@
+<!-- <h1 class="title">Public Domain</h1>
+<p class="subtitle">Tool to store and read public domain materials</p> -->
+
 <section class="hero is-primary is-fullheight">
   <!-- Hero head: will stick at the top -->
   <% if !user_signed_in? %>
@@ -14,26 +17,97 @@
   <% end %>
 
   <% if user_signed_in? %>
-
     <div class="hero-body">
-      <% if user_signed_in? %>
-        <div class="container is-fullhd">
-          <h1 class="title">Your uploaded Items</h1>
+      <div class="container">
+        <% flash.each do |message_type, message| %>
+          <%= content_tag(:div, message, class: "notification is-primary is-#{message_type}") %>
+        <% end %>
+        <div class="is-fullhd">
+        <h1 class="title">Featured Items</h1>
           <div class="columns is-multiline">
             <% @items.each do |item| %>
-              <div class="column is-2">
-                <div class="card">
-                  <div class="card-image">
-                    <figure class="image is-3by4">
-                      <%= image_tag item.image if item.image.attached? %>
-                    </figure>
+              <div class="column is-one-quarter-desktop is-half-tablet">
+                  <div class="card">
+                    <div class="js-modal-trigger" data-target="modal-<%= item.id %>" style="cursor:pointer;">
+                      <div class="card-image">
+                        <figure class="image is-3by4">
+                          <% if item.image.attached? %>
+                              <%= image_tag item.image, style:"object-fit: cover;" %>
+                              <%= image_tag item.image.preview(resize_to_fit: [600,400]),style:"object-fit: cover;" if item.image.previewable? %>
+                          <% end %>
+                        </figure>
+                      </div>
+                    </div>
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-left">
+                        <figure class="image is-48x48">
+                            <% if item.user.avatar.attached? %>
+                              <%= image_tag item.user.avatar %>
+                            <% else %>
+                              <img src="assets/user.png" />
+                            <% end %>
+                        </figure>
+                      </div>
+                      <div class="media-content">
+                        <p class="title is-4" style="color:black"><%= item.title %></p>
+                        <p class="subtitle is-6" style="color:black">Uploader: <%= item.user.username %></p>
+                      </div>
+                    </div>
+                
+                    <div class="content">
+                      Id: <%= item.id %>. <%= item.description %>.
+                      <% if item.published == true %>
+                        <p class="subtitle is-6" style="color:black">Published: <%= item.created_at.strftime("%-d/%-m/%y  %H:%M %Z") %> </p>
+                      <% end %>
+                      <button class="js-modal-trigger button is-grey-darker" data-target="modal-<%= item.id %>">
+                        View
+                      </button>
+                    </div>
                   </div>
-                </div>            
+                </div> 
+
               </div>
-            <% end %> 
+            <% end %>
           </div>
         </div>
-      <% end %> 
+
+        <% @items.each do |item| %>
+          <div class="column">
+            <div class="card-content">
+              <div class="media">                   
+              <div class="modal" id="modal-<%= item.id %>">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                  <div class="box">
+                    <h1 class="subtitle" style="color:black"><%= item.title %></h1>
+
+                    <%= link_to "Show item", item %> <span class="icon"><i class="fas fa-eye"></i></span>|
+                    <%= link_to "Edit item", edit_item_path(item) %> <% link_to edit_item_path(item) %> <span class="icon"><i class="fas fa-brush"></i></span>|
+                    <%= link_to "Go to my items", items_path %> <% link_to items_path %> <span class="icon"><i class="fas fa-images"></i></span>|
+                    <%= link_to "Download", rails_blob_path(item.image, disposition: "attachment") %> <span class="icon"><i class="fas fa-download"></i></span>
+                    <hr>
+                    <% if item.image.content_type == "video/mp4" || item.image.content_type == "video/ogg" %>
+                      <%= video_tag rails_blob_path(item.image), controls: true %>
+                    <% elsif item.image.content_type == "application/pdf" %>
+                      <embed class="" src="<%= polymorphic_url(item.image) %>" type="application/pdf" style="width: 600px; max-width: 100%; min-height: 800px; max-height: 100%; object-fit: cover;" > 
+                    <% else %>
+                      <% if item.image.attached? %>
+                        <%= image_tag item.image, style:"width: 600px; height:auto; object-fit: cover;" %>
+                      <% else %>
+                        <p>Your image cannot be displayed</p>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+                <button class="modal-close is-large" aria-label="close"></button>
+              </div> 
+            </div>
+          </div>
+        <% end %> 
+      </div>
     </div>
+    
+
   <% end %> 
 </section>

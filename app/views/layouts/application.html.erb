@@ -8,7 +8,6 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-    <script src="https://kit.fontawesome.com/392db0e3a2.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
@@ -18,7 +17,7 @@
           <span class="navbar-item">
             <span class="icon">
                 <%= link_to "", root_path, class: "fas fa-landmark", style: "color:#000; font-size:1.2em" %>
-                <span>&nbsp;<%= link_to "Public_Domain", root_path, style:"font-size: 1rem; color: #000; font-family: 'Roboto', sans-serif;" %></span>
+                <span>&nbsp;<%= link_to "Blic", root_path, style:"font-size: 1rem; color: #000; font-family: 'Roboto', sans-serif;" %></span>
             </span>
           </span>
           <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
@@ -65,5 +64,7 @@
     </nav>
     <%= yield %>
   </body>
+
+  <script src="https://kit.fontawesome.com/392db0e3a2.js" crossorigin="anonymous"></script>
 
 </html>
