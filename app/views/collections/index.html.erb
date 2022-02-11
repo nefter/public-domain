@@ -10,7 +10,11 @@
               <div class="card">
                 <div class="card-image">
                   <figure class="image is-3by4">
+                    <% if collection.items[0]%>                  
+                      <%=image_tag collection.items[0].image, style:"object-fit: cover;" %>
+                    <% else %>
                       <img src="assets/collections.png" style="object-fit: cover;" />
+                    <% end %>
                   </figure>
                 </div>
                 <div class="card-content">
