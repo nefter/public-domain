@@ -17,7 +17,8 @@
         <div class="navbar-brand">
           <span class="navbar-item">
             <span class="icon">
-                <%= link_to "", root_path, class: "fas fa-landmark fa-2x" %>
+                <%= link_to "", root_path, class: "fas fa-landmark", style: "color:#000; font-size:1.2em" %>
+                <span>&nbsp;<%= link_to "Public_Domain", root_path, style:"font-size: 1rem; color: #000; font-family: 'Roboto', sans-serif;" %></span>
             </span>
           </span>
           <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
@@ -40,13 +41,19 @@
             <% end %>
             <% if user_signed_in? %>
             <span class="navbar-item">
-              <%= link_to "New Item", new_item_path, class: "button is-primary" %>
+              <span class="icon">
+                <%= link_to "", new_item_path, class: "fas fa-plus", style: "color:grey;" %>
+              </span>
+              <%= link_to "New Item", new_item_path, style: "color:grey;" %>
             </span>
             <span class="navbar-item">
-              <%= link_to "New Collection", new_collection_path, class: "button is-primary" %>
+              <span class="icon">
+                <%= link_to "", new_collection_path, class: "fas fa-box", style: "color:grey;" %>
+              </span>
+              <%= link_to "New Collection", new_collection_path, style: "color:grey;" %>
             </span>
             <span class="navbar-item">
-              <%= link_to current_user.username, edit_user_registration_path %>
+              Welcome, <%= current_user.username %>
             </span>
             <span class="navbar-item">
               <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { "turbo-method": :delete }, class: "button is-primary" %>
