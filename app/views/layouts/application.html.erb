@@ -8,7 +8,6 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/css/bulma-carousel.min.css">
   </head>
 
   <body>
@@ -18,7 +17,7 @@
           <span class="navbar-item">
             <span class="icon">
                 <%= link_to "", root_path, class: "fas fa-landmark", style: "color:#000; font-size:1.2em" %>
-                <span>&nbsp;<%= link_to "Public_Domain", root_path, style:"font-size: 1rem; color: #000; font-family: 'Roboto', sans-serif;" %></span>
+                <span>&nbsp;<%= link_to "Blic", root_path, style:"font-size: 1rem; color: #000; font-family: 'Roboto', sans-serif;" %></span>
             </span>
           </span>
           <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
@@ -53,7 +52,7 @@
               <%= link_to "New Collection", new_collection_path, style: "color:grey;" %>
             </span>
             <span class="navbar-item">
-              Welcome, <%= current_user.username %>
+              Welcome <%= current_user.username %>
             </span>
             <span class="navbar-item">
               <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { "turbo-method": :delete }, class: "button is-primary" %>
@@ -67,5 +66,4 @@
   </body>
 
   <script src="https://kit.fontawesome.com/392db0e3a2.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script>
 </html>
